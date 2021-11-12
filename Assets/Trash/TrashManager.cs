@@ -33,8 +33,10 @@ public class TrashManager : MonoBehaviour
         if (!trash.CompareTag("Trash"))
         {
             Debug.LogWarning("Ne peut pas spawn un objet qui n'a pas tag Trash");
+            return;
         }
 
+        Debug.Log("Spawned Trash !");
         GameObject spawned_trash = Instantiate(trash);
         spawned_trash.transform.position = spawn_pos;
         spawned_trash.transform.rotation = Random.rotation;

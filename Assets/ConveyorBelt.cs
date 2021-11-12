@@ -19,16 +19,18 @@ public class ConveyorBelt : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Thrash")
+        if (other.gameObject.tag == "Trash")
         {
+            Debug.Log("Object " + other.gameObject.name + " enter ConveyorBelt");
             TryAdd(other.transform);
         }
     }
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.tag == "Thrash" && trashs.Contains(other.transform))
+        if (other.gameObject.tag == "Trash" && trashs.Contains(other.transform))
         {
+            Debug.Log("Object " + other.gameObject.name + " exit ConveyorBelt");
             trashs.Remove(other.transform);
         }
     }
@@ -45,7 +47,7 @@ public class ConveyorBelt : MonoBehaviour
     {
         foreach (Transform trash_transform in trashs)
         {
-            trash_transform.Translate(conveyorBeltDir * Time.deltaTime * speed);
+            trash_transform.Translate(conveyorBeltDir * Time.deltaTime * speed, Space.World);
         }
     }
 }
