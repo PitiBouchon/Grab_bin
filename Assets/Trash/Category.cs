@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Category
 {
-    public enum Couleur
+    public enum CatColor
     {
         BLUE,
         ORANGE
     }
 
-    public enum Type
+    public enum CatType
     {
         ORGANIC,
         CARDBOARD,
