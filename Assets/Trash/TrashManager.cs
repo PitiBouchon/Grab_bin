@@ -37,7 +37,7 @@ public class TrashManager : MonoBehaviour
         }
 
         Debug.Log("Spawned Trash !");
-        GameObject spawned_trash = Instantiate(trash);
+        GameObject spawned_trash = Instantiate(trash, this.transform);
         spawned_trash.transform.position = spawn_pos;
         spawned_trash.transform.rotation = Random.rotation;
     }
@@ -49,7 +49,10 @@ public class TrashManager : MonoBehaviour
 
     IEnumerator SpawnContinously()
     {
-        SpawnTrash(trashes[Random.Range(0, trashes.Length)]);
-        yield return new WaitForSeconds(Random.Range(2, 4));
+        while (true)
+        {
+            SpawnTrash(trashes[Random.Range(0, trashes.Length)]);
+            yield return new WaitForSeconds(Random.Range(3, 5));
+        }
     }
 }
