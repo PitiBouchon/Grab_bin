@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class ConveyorBelt : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "Thrash")
+        if (other.gameObject.tag == "Thrash")
         {
             TryAdd(other.transform);
         }
@@ -26,25 +27,25 @@ public class ConveyorBelt : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.tag == "Thrash" && trashs.Contain(other.transform))
+        if (other.gameObject.tag == "Thrash" && trashs.Contains(other.transform))
         {
             trashs.Remove(other.transform);
         }
     }
 
-    private void TryAdd(Trash trash)
+    private void TryAdd(Transform trash_transform)
     {
-        if (trashs.Contain(trash))
+        if (trashs.Contains(trash_transform))
             return;
 
-        trashs.Add(trash);
+        trashs.Add(trash_transform);
     }
 
     private void Update()
     {
-        foreach (Thrash trash in thrashs)
+        foreach (Transform trash_transform in trashs)
         {
-            trash.Translate(conveyorBeltDir * Time.deltaTime * speed);
+            trash_transform.Translate(conveyorBeltDir * Time.deltaTime * speed);
         }
     }
 }
