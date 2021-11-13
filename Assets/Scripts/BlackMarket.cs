@@ -10,12 +10,12 @@ public class BlackMarket : MonoBehaviour
     [SerializeField]
     private int maxDuration = 240;
     [SerializeField]
-    private bool AskForColor = false;
-
+    private int clientSpawnCooldown = 100;
+    [SerializeField]
+    private int baseReward = 50;
     public void SpawnClient()
     {
-        int clientLifeSpan = Random.Range(minDuration, maxDuration);
-        //
+        //new Client(minDuration, maxDuration, baseReward);
 
     }
 }
