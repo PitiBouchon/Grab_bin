@@ -15,6 +15,7 @@ public class BinManager : MonoBehaviour
     GameObject healthManager;
     GameObject stressManager;
 
+    public AudioSource audio;
     private void Start()
     {
         //curHP = GetComponent<HealthBar>().curHP;
@@ -24,6 +25,8 @@ public class BinManager : MonoBehaviour
 
         stressManager = GameObject.Find("StressManager");
         curStress = stressManager.GetComponent<StressBar>().curStress;
+
+        audio = GetComponent<AudioSource>();
     }
     
     
@@ -34,6 +37,7 @@ public class BinManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Trash")
         {
+            audio.Play();
             //CatColor trashColor = GetComponent<TrashScript>.cat_color;
             TrashCatColor = collision.gameObject.GetComponent<TrashScript>().cat_color;
             TrashCatType = collision.gameObject.GetComponent<TrashScript>().cat_type;
