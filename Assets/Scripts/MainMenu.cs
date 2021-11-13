@@ -20,6 +20,15 @@ public class MainMenu : MonoBehaviour
         zAngle = cam.transform.rotation.eulerAngles.z;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            this.transform.Find("EscapeMenu").gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
     public void StartGame()
     {
         StartCoroutine(LoadScene("General"));
@@ -36,6 +45,21 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(CameraRotationToBlackMarket());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(false);
         this.transform.Find("ToTrashSortingButton").gameObject.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        this.transform.Find("EscapeMenu").gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void ReturnToMainMenu()
+    {
+        StartCoroutine(LoadScene("TitleScreen"));
+        Time.timeScale = 1;
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     private IEnumerator CameraRotationToBlackMarket()
