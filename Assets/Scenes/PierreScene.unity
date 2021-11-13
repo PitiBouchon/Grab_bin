@@ -170,6 +170,7 @@ MonoBehaviour:
   trashes:
   - {fileID: 2665913550370965207, guid: 9a7532d30d39c8740a178ff57c573310, type: 3}
   - {fileID: 8618125763263564818, guid: 0126423f75f5a2d4c99981d6ca7de275, type: 3}
+  - {fileID: 2597992135165633220, guid: ff31a3bd2a8e2d04a825d049810b44e0, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +533,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97520b2c790ca5246bbb5eb6c4521380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trash_manager: {fileID: 198076634}
 --- !u!1001 &1304511233
 PrefabInstance:
   m_ObjectHideFlags: 0
