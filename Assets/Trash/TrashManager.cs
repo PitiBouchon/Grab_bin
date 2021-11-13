@@ -30,13 +30,7 @@ public class TrashManager : MonoBehaviour
 
     public void SpawnTrash(GameObject trash)
     {
-        if (!trash.CompareTag("Trash"))
-        {
-            Debug.LogWarning("Ne peut pas spawn un objet qui n'a pas tag Trash");
-            return;
-        }
-
-        Debug.Log("Spawned Trash !");
+        Debug.Log("Create new Trash !");
         GameObject spawned_trash = Instantiate(trash, this.transform);
         SetTrash(spawned_trash);
     }
