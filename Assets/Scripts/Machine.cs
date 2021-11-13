@@ -15,28 +15,31 @@ public class Machine : MonoBehaviour
     [SerializeField]
     private float spawnDelay;
 
-    //public Dictionary<CatType, GameObject> trashPrefab;
-    [SerializeField] private GameObject trashPrefab;
-
-    private Dictionary<MachineType, Dictionary<CatType, Dictionary<CatType, float>>> dropRates = new Dictionary<MachineType, Dictionary<CatType, Dictionary<CatType, float>>>();
-
-    private void Awake()
+    private GameObject[] trashPrefab
     {
+        get { return TrashManager.Instance.trashes; }
+    }
+
+    private Dictionary<MachineType, Dictionary<CatType, Dictionary<GameObject, float>>> dropRates = new Dictionary<MachineType, Dictionary<CatType, Dictionary<GameObject, float>>>();
+
+    private void Start()
+    {
+        List<GameObject> temp = new List<GameObject>(TrashManager.Instance.trashes);
         foreach (int i in System.Enum.GetValues(typeof(MachineType)))
         {
-            dropRates.Add((MachineType)i, new Dictionary<CatType, Dictionary<CatType, float>>());
+            dropRates.Add((MachineType)i, new Dictionary<CatType, Dictionary<GameObject, float>>());
             foreach (int j in System.Enum.GetValues(typeof(CatType)))
             {
-                dropRates[(MachineType)i].Add((CatType)j, new Dictionary<CatType, float>());
-                foreach (int k in System.Enum.GetValues(typeof(CatType)))
+                dropRates[(MachineType)i].Add((CatType)j, new Dictionary<GameObject, float>());
+                foreach (GameObject obj in temp)
                 {
-                    dropRates[(MachineType)i][(CatType)j].Add((CatType)k, 0f);
+                    dropRates[(MachineType)i][(CatType)j].Add(obj, .25f);
                 }
             }
         }
         //add drop rates here following this example:
         // set float f this way: f=min spawn amount + probability of extra spawning
-        dropRates[MachineType.RAFFINEUR][CatType.ORGANIC][CatType.CARDBOARD] = 0.6f;
+        dropRates[MachineType.RAFFINEUR][CatType.ORGANIC][trashPrefab[0]] = 0.6f;
     }
 
     public enum MachineType
@@ -59,24 +62,25 @@ public class Machine : MonoBehaviour
 
     private IEnumerator Treat(TrashScript trash)
     {
-        foreach (KeyValuePair<CatType, float> frequency in dropRates[type][trash.cat_type])
+        Debug.LogWarning("heho la ca va pas ou quoi");
+        foreach (KeyValuePair<GameObject, float> couple in dropRates[type][trash.cat_type])
         {
-            float temp = 0f;
-            while (frequency.Value - temp > 0)
+            float temp = Random.Range(0f, 1f);
+            while (couple.Value > temp)
             {
                 yield return new WaitForSeconds(spawnDelay);
-                Output(frequency.Key, trash.cat_color);
+                Output(couple.Key);
                 temp += Random.Range(1f, 2f);
-                Destroy(trash.gameObject);
             }
         }
+        Destroy(trash.gameObject);
     }
 
-    private void Output(CatType trashType, CatColor trashColor)
+    private void Output(GameObject trash)
     {
-        GameObject temp = Instantiate(trashPrefab/*trashPrefab[trashType]*/, spawnPos, Quaternion.Euler(spawnRot));
-        temp.GetComponent<TrashScript>().cat_type = trashType;
-        temp.GetComponent<TrashScript>().cat_color = trashColor;
+        GameObject temp = Instantiate(trash, spawnPos, Quaternion.Euler(spawnRot));
+        temp.GetComponent<TrashScript>().cat_type = trash.GetComponent<TrashScript>().cat_type;
+        temp.GetComponent<TrashScript>().cat_color = trash.GetComponent<TrashScript>().cat_color;
         temp.GetComponent<Rigidbody>().AddForce(spawnForce);
     }
 }

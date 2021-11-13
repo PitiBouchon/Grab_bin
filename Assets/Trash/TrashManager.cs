@@ -25,21 +25,22 @@ public class TrashManager : MonoBehaviour
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(spawn_pos, 0.5f);
+        Gizmos.DrawSphere(spawn_pos, 0.5f);
     }
 
     public void SpawnTrash(GameObject trash)
     {
-        if (!trash.CompareTag("Trash"))
-        {
-            Debug.LogWarning("Ne peut pas spawn un objet qui n'a pas tag Trash");
-            return;
-        }
-
-        Debug.Log("Spawned Trash !");
+        Debug.Log("Create new Trash !");
         GameObject spawned_trash = Instantiate(trash, this.transform);
-        spawned_trash.transform.position = spawn_pos;
-        spawned_trash.transform.rotation = Random.rotation;
+        SetTrash(spawned_trash);
+    }
+
+    public void SetTrash(GameObject trash)
+    {
+        trash.transform.position = spawn_pos;
+        trash.transform.rotation = Random.rotation;
+        trash.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        trash.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
     void Start()
