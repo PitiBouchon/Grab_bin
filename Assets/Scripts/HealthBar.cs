@@ -19,7 +19,6 @@ public class HealthBar : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKey("z"))
         {
             HeatlBarImage.fillAmount = curHP/maxHP;
         }
