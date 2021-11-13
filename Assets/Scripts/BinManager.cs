@@ -10,6 +10,24 @@ public class BinManager : MonoBehaviour
     Category.CatColor TrashCatColor;
     Category.CatType TrashCatType;
 
+    float curHP;
+    float curStress;
+    GameObject healthManager;
+    GameObject stressManager;
+
+    private void Start()
+    {
+        //curHP = GetComponent<HealthBar>().curHP;
+        //variablea = GameObject.Find("Interface").GetComponent("GuiManager").variableA;
+        healthManager = GameObject.Find("HealthManager");
+        curHP =healthManager.GetComponent<HealthBar>().curHP;
+
+        stressManager = GameObject.Find("StressManager");
+        curStress = stressManager.GetComponent<StressBar>().curStress;
+    }
+    
+    
+
     
 
     private void OnCollisionEnter(Collision collision)
@@ -34,13 +52,21 @@ public class BinManager : MonoBehaviour
 
     public void Bonus()
     {
-        //Appelé, il donne des malus de vie et de stress
+        curHP += 5;
+        healthManager.GetComponent<HealthBar>().SetCurHP(curHP);
+        curStress += 5;
+        stressManager.GetComponent<StressBar>().SetCurStress(curStress);
+
         print("bg gros");
     }
 
     public void Malus()
     {
-        //Appelé, il donne des malus de vie et de stress
-        print("Eclaté au sol");
+        curHP -= 5;
+        healthManager.GetComponent<HealthBar>().SetCurHP(curHP);
+        curStress -= 5;
+        stressManager.GetComponent<StressBar>().SetCurStress(curStress);
+
+        print("t'es une merde");
     }
 }

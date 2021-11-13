@@ -16,6 +16,11 @@ public class HealthBar : MonoBehaviour
         HeatlBarImage.fillAmount = 1;
     }
 
+    public void SetCurHP(float HP)
+    {
+        curHP = HP;
+    }
+
    
     void Update()
     {
