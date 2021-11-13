@@ -23,4 +23,13 @@ public class StressBar : MonoBehaviour
             StressBarImage.fillAmount = curStress / maxStess;
         }
     }
+
+    public void SetCurStress(float Stress)
+    {
+        if (Stress < maxStess)
+        {
+            curStress = Stress;
+        }
+
+    }
 }
