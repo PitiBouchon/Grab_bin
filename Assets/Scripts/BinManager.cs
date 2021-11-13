@@ -15,6 +15,7 @@ public class BinManager : MonoBehaviour
     GameObject healthManager;
     GameObject stressManager;
 
+
     public AudioSource audio;
     private void Start()
     {
@@ -41,10 +42,12 @@ public class BinManager : MonoBehaviour
             //CatColor trashColor = GetComponent<TrashScript>.cat_color;
             TrashCatColor = collision.gameObject.GetComponent<TrashScript>().cat_color;
             TrashCatType = collision.gameObject.GetComponent<TrashScript>().cat_type;
-            if (BinCatColor == TrashCatColor && BinCatType == TrashCatType)
+            if (BinCatType == TrashCatType)
             {
                 Destroy(collision.gameObject);
                 Bonus();
+                GameManager.Instance.SortTrash();
+
             }
             else
             {
