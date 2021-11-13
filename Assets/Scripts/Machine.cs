@@ -15,6 +15,12 @@ public class Machine : MonoBehaviour
     [SerializeField]
     private float spawnDelay;
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(spawnPos, 0.5f);
+    }
+
     private GameObject[] trashPrefab
     {
         get { return TrashManager.Instance.trashes; }
@@ -33,7 +39,7 @@ public class Machine : MonoBehaviour
                 dropRates[(MachineType)i].Add((CatType)j, new Dictionary<GameObject, float>());
                 foreach (GameObject obj in temp)
                 {
-                    dropRates[(MachineType)i][(CatType)j].Add(obj, .25f);
+                    dropRates[(MachineType)i][(CatType)j].Add(obj, 1f);
                 }
             }
         }
