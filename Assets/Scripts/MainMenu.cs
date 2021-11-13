@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class MainMenu : MonoBehaviour
         cam = Camera.main;
         xAngle = cam.transform.rotation.eulerAngles.x;
         zAngle = cam.transform.rotation.eulerAngles.z;
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(LoadScene("General"));
     }
     public void ToTrashSorting()
     {
@@ -57,5 +63,16 @@ public class MainMenu : MonoBehaviour
     private IEnumerator CameraZoomToBlackMarket()
     {
         yield return null;
+    }
+
+    IEnumerator LoadScene(string level)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(level);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }
