@@ -39,13 +39,14 @@ public class Machine : MonoBehaviour
                 dropRates[(MachineType)i].Add((CatType)j, new Dictionary<GameObject, float>());
                 foreach (GameObject obj in temp)
                 {
-                    dropRates[(MachineType)i][(CatType)j].Add(obj, 0.1f);
+                    dropRates[(MachineType)i][(CatType)j].Add(obj, 0f);
                 }
             }
         }
         //add drop rates here following this example:
         // set float f this way: f=min spawn amount + probability of extra spawning
         dropRates[MachineType.RAFFINEUR][CatType.ORGANIC][trashPrefab[0]] = 0.6f;
+
     }
 
     public enum MachineType
