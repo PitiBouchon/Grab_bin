@@ -48,11 +48,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartDay());
     }
 
-    private IEnumerator StartDay(bool first = true)
-    {
-        StartCoroutine(StartDay());
-    }
-
     private IEnumerator StartDay(bool first=true)
     {
         if (!first)
