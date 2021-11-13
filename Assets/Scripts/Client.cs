@@ -90,7 +90,7 @@ public class Client : MonoBehaviour
     private void generateReward(int baseReward)
     {
         reward = baseReward * demandLevel;
-        int rdm = Random.Range(-1 * reward * 20 / 100, reward * 20 / 100, );
+        int rdm = Random.Range(-1 * reward * 20 / 100, reward * 20 / 100);
         reward += rdm;
     }
 
