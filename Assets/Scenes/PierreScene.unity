@@ -168,7 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn_pos: {x: 0, y: 6, z: 10}
   trashes:
-  - {fileID: 5642123661506133771, guid: 8cfd2c027c4aa974eafdc8dae6741a3d, type: 3}
+  - {fileID: 2665913550370965207, guid: 9a7532d30d39c8740a178ff57c573310, type: 3}
+  - {fileID: 8618125763263564818, guid: 0126423f75f5a2d4c99981d6ca7de275, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,8 @@ public class ConveyorBelt : MonoBehaviour
     {
         foreach (Transform trash_transform in trashs)
         {
-            trash_transform.Translate(conveyorBeltDir * Time.deltaTime * speed, Space.World);
+            trash_transform.GetComponent<Rigidbody>().MovePosition(trash_transform.GetComponent<Rigidbody>().position + conveyorBeltDir * speed * Time.deltaTime);
+            // trash_transform.Translate(conveyorBeltDir * Time.deltaTime * speed, Space.World);
         }
     }
 }
