@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class CollectionManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> collectedTrash= new List<GameObject>();
+    private static CollectionManager _instance;
+    public static CollectionManager Instance { get { return _instance; } }
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
+    public List<GameObject> collectedTrash= new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {

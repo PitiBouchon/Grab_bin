@@ -33,6 +33,7 @@ public class TrashManager : MonoBehaviour
         Debug.Log("Create new Trash !");
         GameObject spawned_trash = Instantiate(trash, this.transform);
         SetTrash(spawned_trash);
+        GameManager.Instance.spawnedObjects++;
     }
 
     public void SetTrash(GameObject trash)
