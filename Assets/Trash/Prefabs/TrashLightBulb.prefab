@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cat_type: 3
   cat_color: 0
-  height: 1.5
+  height: 2
 --- !u!114 &6449330247104321535
 MonoBehaviour:
   m_ObjectHideFlags: 0
