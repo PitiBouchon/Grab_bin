@@ -11,6 +11,7 @@ public class DragRigidbody : MonoBehaviour
 
 	Transform jointTrans;
 	float dragDepth;
+	GameObject touched_trash;
 
 	void OnMouseDown()
 	{
@@ -29,14 +30,16 @@ public class DragRigidbody : MonoBehaviour
 
 	public void HandleInputBegin(Vector3 screenPosition)
 	{
-		var ray = Camera.main.ScreenPointToRay(screenPosition);
+		Ray ray = Camera.main.ScreenPointToRay(screenPosition);
 		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit))
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Trash")))
 		{
-			if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive"))
+			if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Trash"))
 			{
 				dragDepth = CameraPlane.CameraToPointDepth(Camera.main, hit.point);
 				jointTrans = AttachJoint(hit.rigidbody, hit.point);
+				hit.transform.gameObject.layer = LayerMask.NameToLayer("Interactive");
+				touched_trash = hit.transform.gameObject;
 			}
 		}
 	}
@@ -47,10 +50,16 @@ public class DragRigidbody : MonoBehaviour
 			return;
 		var worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
 		jointTrans.position = CameraPlane.ScreenToWorldPlanePoint(Camera.main, dragDepth, screenPosition);
+		jointTrans.position = new Vector3(jointTrans.position.x, 1.5f, jointTrans.position.z);
 	}
 
 	public void HandleInputEnd(Vector3 screenPosition)
 	{
+		if (touched_trash != null)
+		{
+			touched_trash.layer = LayerMask.NameToLayer("Trash");
+			touched_trash = null;
+		}
 		Destroy(jointTrans.gameObject);
 	}
 

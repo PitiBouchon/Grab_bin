@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6934011076520350759}
   - component: {fileID: 549061893136619704}
   - component: {fileID: -8081046038182152657}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Trash
   m_TagString: Trash
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &-8081046038182152657
 MonoBehaviour:
   m_ObjectHideFlags: 0

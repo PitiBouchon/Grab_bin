@@ -25,7 +25,7 @@ public class TrashManager : MonoBehaviour
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(spawn_pos, 0.5f);
+        Gizmos.DrawSphere(spawn_pos, 0.5f);
     }
 
     public void SpawnTrash(GameObject trash)
