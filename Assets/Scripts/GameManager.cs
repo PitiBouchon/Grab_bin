@@ -27,13 +27,6 @@ public class GameManager : MonoBehaviour
     private bool isAtDayEnd = false;
     private int keptObjects
     {
-        get { return CollectionManager.Instance.collectedTrashes.Length; }
-    }
-
-
-    private bool isAtDayEnd = false;
-    private int keptObjects
-    {
         get { return CollectionManager.Instance.collectedTrash.Count; }
     }
 
