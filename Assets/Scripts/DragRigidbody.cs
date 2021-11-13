@@ -52,7 +52,10 @@ public class DragRigidbody : MonoBehaviour
 			dragDepth = CameraPlane.CameraToPointDepth(Camera.main, touched_trash.transform.position);
 		Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
 		jointTrans.position = CameraPlane.ScreenToWorldPlanePoint(Camera.main, dragDepth, screenPosition);
-		jointTrans.position = new Vector3(jointTrans.position.x, 1.5f, jointTrans.position.z);
+		float height_pos = 1.5f;
+		if (touched_trash != null)
+			height_pos = touched_trash.GetComponent<TrashScript>().height;
+		jointTrans.position = new Vector3(jointTrans.position.x, height_pos, jointTrans.position.z);
 	}
 
 	public void HandleInputEnd(Vector3 screenPosition)
