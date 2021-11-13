@@ -10,6 +10,8 @@ public class TrashScript : MonoBehaviour
     public CatType cat_type;
     public CatColor cat_color;
 
+    public float height = 1.5f;
+
     private void Awake()
     {
         if (this.tag != "Trash" || this.gameObject.layer != LayerMask.NameToLayer("Trash"))
