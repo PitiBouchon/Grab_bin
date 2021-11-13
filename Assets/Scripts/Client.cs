@@ -8,16 +8,20 @@ using Category;
 public class Client : MonoBehaviour
 {
     private int lifeSpan;
-    private CatColor askedColor;
-    private CatType askedType;
-    private TrashName askedTrash;
-    private int demandLevel = 0;
+    private CatColor? askedColor = null;
+    private CatType? askedType = null;
+    private TrashName? askedTrash = null;
+    private int reward;
+    private string voiceLine;
+    private int demandLevel ;
 
-    public Client()
+    public Client(int minLifespan, int maxLifeSpan, int baseReward)
     {
-        int rd = Random.Range(0, 2);
+        generateReward(baseReward);
+        lifeSpan = Random.Range(minLifespan, maxLifeSpan + 1);
         demandLevel = Random.Range(1, 4);
 
+        int rd = Random.Range(0, 2);
         if (demandLevel == 1)
         {
             // Color or Type
@@ -53,7 +57,7 @@ public class Client : MonoBehaviour
         }
     }
 
-    public CatColor GetRandomCatColor()
+    private CatColor GetRandomCatColor()
     {
         System.Random random = new System.Random();
         Type type = typeof(CatColor);
@@ -63,7 +67,7 @@ public class Client : MonoBehaviour
         return value;
     }
 
-    public CatType GetRandomCatType()
+    private CatType GetRandomCatType()
     {
         System.Random random = new System.Random();
         Type type = typeof(CatType);
@@ -73,7 +77,7 @@ public class Client : MonoBehaviour
         return value;
     }
 
-    public TrashName GetRandomTrashName()
+    private TrashName GetRandomTrashName()
     {
         System.Random random = new System.Random();
         Type type = typeof(TrashName);
@@ -81,5 +85,37 @@ public class Client : MonoBehaviour
         int index = random.Next(values.Length);
         TrashName value = (TrashName)values.GetValue(index);
         return value;
+    }
+
+    private void generateReward(int baseReward)
+    {
+        reward = baseReward * demandLevel;
+        int rdm = Random.Range(-1 * reward * 20 / 100, reward * 20 / 100, );
+        reward += rdm;
+    }
+
+    private void generateTextMessage()
+    {
+        voiceLine = "Hello! I would like ";
+        if (askedTrash != null)
+        {
+            voiceLine += "a " + askedTrash.ToString() + " ";
+        }
+        else
+        {
+            voiceLine += "an item ";
+        }
+        if (askedColor != null && askedType == null)
+        {
+            voiceLine += "of color " + askedColor.ToString();
+        }
+        else if (askedColor == null && askedType != null)
+        {
+            voiceLine += "of type " + askedType.ToString();
+        }
+        else if (askedType != null && askedColor != null)
+        {
+            voiceLine += "of color " + askedColor.ToString() + " and of type " + askedType.ToString();
+        }
     }
 }
