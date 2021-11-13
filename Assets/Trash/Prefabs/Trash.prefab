@@ -140,5 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3b0eafc4e1e1742aeb3c7d7f30cee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 600
+  force: 500
   damping: 6

@@ -48,7 +48,9 @@ public class DragRigidbody : MonoBehaviour
 	{
 		if (jointTrans == null)
 			return;
-		var worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
+		if (touched_trash != null)
+			dragDepth = CameraPlane.CameraToPointDepth(Camera.main, touched_trash.transform.position);
+		Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
 		jointTrans.position = CameraPlane.ScreenToWorldPlanePoint(Camera.main, dragDepth, screenPosition);
 		jointTrans.position = new Vector3(jointTrans.position.x, 1.5f, jointTrans.position.z);
 	}

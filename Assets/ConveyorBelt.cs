@@ -21,7 +21,6 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (other.gameObject.tag == "Trash")
         {
-            Debug.Log("Object " + other.gameObject.name + " enter ConveyorBelt");
             TryAdd(other.transform);
         }
     }
@@ -30,7 +29,6 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (other.gameObject.tag == "Trash" && trashs.Contains(other.transform))
         {
-            Debug.Log("Object " + other.gameObject.name + " exit ConveyorBelt");
             trashs.Remove(other.transform);
         }
     }
