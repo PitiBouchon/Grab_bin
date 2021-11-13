@@ -18,7 +18,10 @@ public class HealthBar : MonoBehaviour
 
     public void SetCurHP(float HP)
     {
-        curHP = HP;
+        if (HP < maxHP) {
+            curHP = HP;
+        }
+        
     }
 
    
