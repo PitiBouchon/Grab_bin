@@ -39,7 +39,7 @@ public class Machine : MonoBehaviour
                 dropRates[(MachineType)i].Add((CatType)j, new Dictionary<GameObject, float>());
                 foreach (GameObject obj in temp)
                 {
-                    dropRates[(MachineType)i][(CatType)j].Add(obj, 1f);
+                    dropRates[(MachineType)i][(CatType)j].Add(obj, 0.1f);
                 }
             }
         }
