@@ -18,4 +18,28 @@ namespace Category
         GLASS,
         OTHER
     }
+
+    public enum TrashName
+    {
+        Banana,
+        Apple,
+        Pizza,
+        PizzaBox,
+        Newspapers,
+        TV,
+        Computer,
+        MusicSpeaker,
+        Vaccum,
+        Phone,
+        Lightbulb,
+        TinCan,
+        Can,
+        MilkBottle,
+        UsedFaceMask,
+        TissueBox,
+        Broom,
+        PlasticBag,
+        IronBar,
+        GazTank
+    }
 }
