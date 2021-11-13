@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85aa067a6e874e8499f62dbff6ec092d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cat_type: 4
-  cat_color: 0
+  cat_type: 2
+  cat_color: 4
   height: 1.5
 --- !u!114 &1373093981719757514
 MonoBehaviour:

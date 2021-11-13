@@ -6,8 +6,11 @@ namespace Category
 {
     public enum CatColor
     {
+        RED,
+        GREEN,
         BLUE,
-        ORANGE
+        YELLOW,
+        PURPLE
     }
 
     public enum CatType
