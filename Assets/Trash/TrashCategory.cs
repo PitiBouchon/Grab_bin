@@ -14,6 +14,8 @@ namespace Category
     {
         ORGANIC,
         CARDBOARD,
-        HOME_APPLIANCE
+        HOME_APPLIANCE,
+        GLASS,
+        OTHER
     }
 }

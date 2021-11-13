@@ -19,7 +19,6 @@ public class StressBar : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("z"))
         {
             StressBarImage.fillAmount = curStress / maxStess;
         }
