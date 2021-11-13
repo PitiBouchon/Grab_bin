@@ -27,6 +27,13 @@ public class GameManager : MonoBehaviour
     private bool isAtDayEnd = false;
     private int keptObjects
     {
+        get { return CollectionManager.Instance.collectedTrashes.Length; }
+    }
+
+
+    private bool isAtDayEnd = false;
+    private int keptObjects
+    {
         get { return CollectionManager.Instance.collectedTrash.Count; }
     }
 
@@ -50,12 +57,18 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StartDay(bool first = true)
     {
+        StartCoroutine(StartDay());
+    }
+
+    private IEnumerator StartDay(bool first=true)
+    {
         if (!first)
         {
             yield return new WaitForSeconds(10f);
         }
         isAtDayEnd = false;
         FadeLight(true);
+
         day++;
         Invoke("EndDay", dayLength);
         startDayTime = Time.time;
@@ -94,7 +107,6 @@ public class GameManager : MonoBehaviour
         int min = (int)((temp - hours) * 60);
         return $"{hours}:{min}";
     }
-
     private void FadeLight(bool value)
     {
         Light light = GameObject.Find("Directional Light").GetComponent<Light>();
@@ -110,6 +122,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public void SortTrash()
     {
         sortedObjects++;
@@ -120,10 +133,14 @@ public class GameManager : MonoBehaviour
         if (isAtDayEnd)
         {
             GUI.Box(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 2, Screen.height / 2), "");
-            //%dechets trié
-            GUI.Label(new Rect(Screen.width / 4+10, Screen.height / 4+10, Screen.width / 2, Screen.height / 2), $"% de déchets triés correctement: {(int)((sortedObjects / spawnedObjects) * 100)}%");
+            //%dechets triï¿½
+            GUI.Label(new Rect(Screen.width / 4+10, Screen.height / 4+10, Screen.width / 2, Screen.height / 2), $"% de dï¿½chets triï¿½s correctement: {(int)((sortedObjects / spawnedObjects) * 100)}%");
             //salaire
             GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 50, Screen.width / 2, Screen.height / 2), $"Salaire: {(int)(sortedObjects / spawnedObjects * salaire)}");
+
+            GUI.Label(new Rect(), $"% de dï¿½chets triï¿½s correctement: {(int)((sortedObjects / spawnedObjects) * 100)}%");
+            //salaire
+            GUI.Label(new Rect(), $"Salaire: {(int)(sortedObjects / spawnedObjects * salaire)}");
             //argent kipar
 
         }
