@@ -38,8 +38,15 @@ public class TrashManager : MonoBehaviour
 
         Debug.Log("Spawned Trash !");
         GameObject spawned_trash = Instantiate(trash, this.transform);
-        spawned_trash.transform.position = spawn_pos;
-        spawned_trash.transform.rotation = Random.rotation;
+        SetTrash(spawned_trash);
+    }
+
+    public void SetTrash(GameObject trash)
+    {
+        trash.transform.position = spawn_pos;
+        trash.transform.rotation = Random.rotation;
+        trash.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        trash.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
     void Start()
