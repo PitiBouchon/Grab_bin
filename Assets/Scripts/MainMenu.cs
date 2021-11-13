@@ -20,19 +20,19 @@ public class MainMenu : MonoBehaviour
     }
     public void ToTrashSorting()
     {
-        StartCoroutine(CameraToTrashSorting());
+        StartCoroutine(CameraRotationToTrashSorting());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(true);
         this.transform.Find("ToTrashSortingButton").gameObject.SetActive(false);
     }
 
     public void ToBlackMarket()
     {
-        StartCoroutine(CameraToBlackMarket());
+        StartCoroutine(CameraRotationToBlackMarket());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(false);
         this.transform.Find("ToTrashSortingButton").gameObject.SetActive(true);
     }
 
-    private IEnumerator CameraToBlackMarket()
+    private IEnumerator CameraRotationToBlackMarket()
     {
 
         for (float i = 0; i <= 180; i += speed)
@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private IEnumerator CameraToTrashSorting()
+    private IEnumerator CameraRotationToTrashSorting()
     {
 
         for (float i = 180; i >= 0; i -= speed)
@@ -52,5 +52,10 @@ public class MainMenu : MonoBehaviour
             cam.transform.rotation = target;
             yield return null;
         }
+    }
+
+    private IEnumerator CameraZoomToBlackMarket()
+    {
+        yield return null;
     }
 }

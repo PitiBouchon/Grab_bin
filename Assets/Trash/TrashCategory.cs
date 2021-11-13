@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,11 @@ namespace Category
 {
     public enum CatColor
     {
+        RED,
+        GREEN,
         BLUE,
-        ORANGE
+        YELLOW,
+        PURPLE
     }
 
     public enum CatType
@@ -18,4 +22,30 @@ namespace Category
         GLASS,
         OTHER
     }
+
+    public enum TrashName
+    {
+        Banana,
+        Apple,
+        Pizza,
+        PizzaBox,
+        Newspapers,
+        TV,
+        Computer,
+        MusicSpeaker,
+        Vaccum,
+        Phone,
+        Lightbulb,
+        TinCan,
+        Can,
+        MilkBottle,
+        UsedFaceMask,
+        TissueBox,
+        Broom,
+        PlasticBag,
+        IronBar,
+        GazTank
+    }
+
+   
 }
