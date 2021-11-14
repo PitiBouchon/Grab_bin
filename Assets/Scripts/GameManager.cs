@@ -142,18 +142,15 @@ public class GameManager : MonoBehaviour
             //%dechets tri�
             GUI.Label(new Rect(Screen.width / 4+10, Screen.height / 4+10, Screen.width / 2, Screen.height / 2), $"% Déchets bien triés : {(int)((sortedObjects * 100f / spawnedObjects))}%");
             //salaire
-            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 50, Screen.width / 2, Screen.height / 2), $"Salaire: {(int)(sortedObjects * 1f / spawnedObjects * salaire)}");
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 50, Screen.width / 2, Screen.height / 2), $"Salaire : {(int)(sortedObjects * 1f / spawnedObjects * salaire)}$");
 
             //GUI.Label(new Rect(), $"% dechets bien trie : {(int)((sortedObjects / spawnedObjects) * 100)}%");
             //salaire
             //GUI.Label(new Rect(), $"Salaire : {(int)(sortedObjects / spawnedObjects * salaire)}");
             //argent kipar
-            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 80, Screen.width / 2, Screen.height / 2), $"Dépense : {depense}");
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 80, Screen.width / 2, Screen.height / 2), $"Dépense : {depense}$");
             // ARGENT
-            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 110, Screen.width / 2, Screen.height / 2), $"Total : {money}");
-
-            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 130, Screen.width / 2, Screen.height / 2), $"T1 : {sortedObjects}");
-            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 150, Screen.width / 2, Screen.height / 2), $"T2 : {spawnedObjects}");
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 110, Screen.width / 2, Screen.height / 2), $"Total $ : {money}");
         }
     }
 }

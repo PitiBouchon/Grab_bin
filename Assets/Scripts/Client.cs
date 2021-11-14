@@ -114,7 +114,7 @@ public class Client : MonoBehaviour
 
     private string generateTextMessage()
     {
-        voiceLine = "Hello! I would like ";
+        voiceLine = "I would like ";
         if (askedTrash != null)
         {
             voiceLine += "a " + askedTrash.ToString() + " ";

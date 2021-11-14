@@ -85,7 +85,7 @@ public class BlackMarket : MonoBehaviour
         // new_dm_prefab.transform.position = new Vector3(0, -(collectedDemand.Count-1) * 20 - 170, -50);
         // new_dm_prefab.transform.rotation = Quaternion.Euler(0, 180, 0);
         RectTransform rt = new_dm_prefab.GetComponent<RectTransform>();
-        rt.localPosition += Vector3.up * (collectedDemand.Count+1) * 50;
+        // rt.localPosition += Vector3.up * (collectedDemand.Count+1) * 50;
         //Debug.Log(rt.localPosition);
         //Debug.Log(rt.position);
         //Debug.Log(rt.anchoredPosition);
@@ -100,6 +100,8 @@ public class BlackMarket : MonoBehaviour
         //il faut stocker la demande dans la liste des demandes
         new_dm_prefab.transform.Find("Button").GetComponent<DemandButton>().client = client;
         collectedDemand.Add((client, new_dm_prefab));
+
+        UpdatePos();
     }
 
     public void UpdateDemands()
@@ -169,7 +171,7 @@ public class BlackMarket : MonoBehaviour
         foreach ((Client client, GameObject go) in collectedDemand)
         {
             RectTransform rt = go.GetComponent<RectTransform>();
-            rt.anchoredPosition = new Vector2(0, -220 + i * 50);
+            rt.anchoredPosition = new Vector2(-200, -400 + i * 50);
             i++;
         }
     }
