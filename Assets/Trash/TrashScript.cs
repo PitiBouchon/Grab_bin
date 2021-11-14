@@ -9,6 +9,7 @@ public class TrashScript : MonoBehaviour
 {
     public CatType cat_type;
     public CatColor cat_color;
+    public TrashName trash_name;
 
     public float height = 1.5f;
 

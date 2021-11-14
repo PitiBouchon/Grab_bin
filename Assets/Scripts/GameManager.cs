@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         //50-30->30%
         //30-10->50%
         //0-10->100%
-        StartCoroutine(StartDay(false)); ;
+        StartCoroutine(StartDay(false));
     }
 
     private void ChangeRule()
