@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 286749fe0c3913f4ab1b24b6cb94db1f
+<<<<<<< Updated upstream
+guid: 77dfad40b9560d1499474da075e4ae93
+=======
+guid: 5481bdb3504556947ac058270ac6cf9f
+>>>>>>> Stashed changes
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -623603649343465320
+    second: Scene
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -41,8 +48,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
