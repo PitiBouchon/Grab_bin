@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Category;
+using UnityEngine.UI;
+using TMPro;
 
 public class Client : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class Client : MonoBehaviour
     private int reward;
     private string voiceLine;
     private int demandLevel ;
+    public GameObject demand;
 
     public Client(int minLifespan, int maxLifeSpan, int baseReward)
     {
@@ -55,6 +58,20 @@ public class Client : MonoBehaviour
             askedTrash = GetRandomTrashName();
             askedColor = GetRandomCatColor();
         }
+
+        voiceLine = generateTextMessage();
+        demand = GameObject.Find("Demand");
+        print(demand);
+        print(voiceLine);
+        //print(voiceLine);
+        //demand.GetComponent<TextMeshPro>().text = voiceLine;
+        TextMeshProUGUI textmeshPro = demand.GetComponent<TextMeshProUGUI>();
+        Debug.Log("OI" + demand + " | " + textmeshPro);
+        // Debug.Log(demand.GetComponents(TextMeshPro));
+        textmeshPro.SetText(voiceLine);
+        //demand.BroadcastMessage(voiceLine);
+
+
     }
 
     private CatColor GetRandomCatColor()
@@ -94,7 +111,7 @@ public class Client : MonoBehaviour
         reward += rdm;
     }
 
-    private void generateTextMessage()
+    private string generateTextMessage()
     {
         voiceLine = "Hello! I would like ";
         if (askedTrash != null)
@@ -117,5 +134,6 @@ public class Client : MonoBehaviour
         {
             voiceLine += "of color " + askedColor.ToString() + " and of type " + askedType.ToString();
         }
+        return voiceLine;
     }
 }
