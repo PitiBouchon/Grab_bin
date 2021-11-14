@@ -4,25 +4,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Category;
-using UnityEngine.UI;
-using TMPro;
+
 
 public class Client : MonoBehaviour
 {
-    private int lifeSpan;
-    private CatColor? askedColor = null;
-    private CatType? askedType = null;
-    private TrashName? askedTrash = null;
-    private int reward;
-    private string voiceLine;
-    private int demandLevel ;
-    public GameObject demand;
+    public int lifeSpan;
+    public CatColor? askedColor = null;
+    public CatType? askedType = null;
+    public TrashName? askedTrash = null;
+    public int reward;
+    public string voiceLine;
+    public int demandLevel ;
+    
+    
 
     public Client(int minLifespan, int maxLifeSpan, int baseReward)
     {
         generateReward(baseReward);
         lifeSpan = Random.Range(minLifespan, maxLifeSpan + 1);
         demandLevel = Random.Range(1, 4);
+        
 
         int rd = Random.Range(0, 2);
         if (demandLevel == 1)
@@ -60,15 +61,15 @@ public class Client : MonoBehaviour
         }
 
         voiceLine = generateTextMessage();
-        demand = GameObject.Find("Demand");
-        print(demand);
-        print(voiceLine);
+        
+        //print(demand);
+        //print(voiceLine);
         //print(voiceLine);
         //demand.GetComponent<TextMeshPro>().text = voiceLine;
-        TextMeshProUGUI textmeshPro = demand.GetComponent<TextMeshProUGUI>();
-        Debug.Log("OI" + demand + " | " + textmeshPro);
+        
+        //Debug.Log("OI" + demand + " | " + textmeshPro);
         // Debug.Log(demand.GetComponents(TextMeshPro));
-        textmeshPro.SetText(voiceLine);
+        
         //demand.BroadcastMessage(voiceLine);
 
 

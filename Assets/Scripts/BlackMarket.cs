@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Category;
 using UnityEngine.UI;
-
+using TMPro;
 public class BlackMarket : MonoBehaviour
 {
     [SerializeField]
@@ -15,15 +15,25 @@ public class BlackMarket : MonoBehaviour
     [SerializeField]
     private int baseReward = 50;
     private bool paused=false;
-    public Text demand;
+    public GameObject demand;
 
+    private GameObject collectionManager;
+    private List<GameObject> collectedTrash;
+    private List<GameObject> collectedDemand;
+
+    private void Start()
+    {
+        collectionManager = GameObject.Find("CollectedItemDetector");
+        
+    }
     private void Update()
     {
         
         if (paused) { return; }
         StartCoroutine("delay");
         SpawnClient();
-        
+        collectedTrash = collectionManager.GetComponent<CollectionManager>().collectedTrash;
+
 
     }
 
@@ -36,10 +46,19 @@ public class BlackMarket : MonoBehaviour
 
     public void SpawnClient()
     {
+        
         Client client = new Client(minDuration, maxDuration, baseReward);
-        client.GetComponent<Client>();
-       
-        
-        
+
+        //il faut stocker la demande dans la liste des demandes
+        List<GameObject> collectedDemand.Add(client);
+
+        //afficher la nouvelle demande
+        string voiceLine = client.voiceLine;
+        demand = GameObject.Find("Demand");
+        TextMeshProUGUI textmeshPro = demand.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText(voiceLine);
+
+
+
     }
 }
