@@ -6,6 +6,7 @@ public class CollectionManager : MonoBehaviour
 {
     private static CollectionManager _instance;
     public static CollectionManager Instance { get { return _instance; } }
+    public List<GameObject> collectedTrash = new List<GameObject>();
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -18,7 +19,6 @@ public class CollectionManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> collectedTrash= new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
