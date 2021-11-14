@@ -15,6 +15,11 @@ public class Machine : MonoBehaviour
     [SerializeField]
     private float spawnDelay;
 
+    private AudioSource audio;
+
+    [SerializeField]
+    private AudioClip incineratorSFX;
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -30,6 +35,8 @@ public class Machine : MonoBehaviour
 
     private void Start()
     {
+        audio = gameObject.AddComponent<AudioSource>();
+
         List<GameObject> temp = new List<GameObject>(TrashManager.Instance.trashes);
         foreach (int i in System.Enum.GetValues(typeof(MachineType)))
         {
@@ -46,7 +53,6 @@ public class Machine : MonoBehaviour
         //add drop rates here following this example:
         // set float f this way: f=min spawn amount + probability of extra spawning
         dropRates[MachineType.RAFFINEUR][CatType.ORGANIC][trashPrefab[0]] = 0.6f;
-
     }
 
     public enum MachineType
@@ -70,6 +76,16 @@ public class Machine : MonoBehaviour
     private IEnumerator Treat(TrashScript trash)
     {
         Debug.LogWarning("heho la ca va pas ou quoi");
+        if (type == MachineType.INCINERATOR)
+        {
+            PlayAudio();
+            if(trash.cat_color == GameManager.Instance.ruleTarget)
+            {
+                GameObject.Find("HealthManager").GetComponent<HealthBar>().SetCurHP(GameObject.Find("HealthManager").GetComponent<HealthBar>().curHP+5);
+                GameObject.Find("StressManager").GetComponent<StressBar>().SetCurStress(GameObject.Find("StressManager").GetComponent<StressBar>().curStress + 5);
+                GameManager.Instance.sortedObjects++;
+            }
+        }
         foreach (KeyValuePair<GameObject, float> couple in dropRates[type][trash.cat_type])
         {
             float temp = Random.Range(0f, 1f);
@@ -89,5 +105,16 @@ public class Machine : MonoBehaviour
         temp.GetComponent<TrashScript>().cat_type = trash.GetComponent<TrashScript>().cat_type;
         temp.GetComponent<TrashScript>().cat_color = trash.GetComponent<TrashScript>().cat_color;
         temp.GetComponent<Rigidbody>().AddForce(spawnForce);
+    }
+
+    private void PlayAudio()
+    {
+        if(type == MachineType.INCINERATOR)
+        {
+            audio.loop = false;
+            audio.playOnAwake = false;
+            audio.clip = incineratorSFX;
+            audio.Play();
+        }
     }
 }

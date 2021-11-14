@@ -42,7 +42,7 @@ public class BinManager : MonoBehaviour
             //CatColor trashColor = GetComponent<TrashScript>.cat_color;
             TrashCatColor = collision.gameObject.GetComponent<TrashScript>().cat_color;
             TrashCatType = collision.gameObject.GetComponent<TrashScript>().cat_type;
-            if (BinCatType == TrashCatType)
+            if (BinCatType == TrashCatType && GameManager.Instance.ruleTarget!=BinCatColor)
             {
                 audio.Play();
                 Destroy(collision.gameObject);
@@ -77,7 +77,7 @@ public class BinManager : MonoBehaviour
         healthManager.GetComponent<HealthBar>().SetCurHP(curHP);
         curStress += 5;
         stressManager.GetComponent<StressBar>().SetCurStress(curStress);
-        GameManager.Instance.SortTrash();
+        GameManager.Instance.sortedObjects++;
         print("bg gros");
     }
 

@@ -37,13 +37,10 @@ public class GameManager : MonoBehaviour
 
     private int day = 0;
 
-    private enum ruleTarget
-    {
-        OBJECT,
-        CATEGORY
-    }
+    public CatColor ruleTarget;
 
-    private ruleTarget currTarget;
+    [SerializeField]
+    private Texture2D[] textures;
 
     private void Start()
     {
@@ -80,7 +77,7 @@ public class GameManager : MonoBehaviour
         isAtDayEnd = true;
         FadeLight(false);
         //update money
-        money += sortedObjects / spawnedObjects * salaire;
+        money += (int)(sortedObjects * 1f / spawnedObjects) * salaire;
         depense = Random.Range(230, 270);
         money -= depense;
 
@@ -111,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     private void ChangeRule()
     {
-        currTarget = (ruleTarget)(Random.Range(0, 2));
+        ruleTarget = (CatColor)(Random.Range(0, System.Enum.GetValues(typeof(CatColor)).Length));
     }
 
     private string GetTime()
@@ -140,21 +137,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void SortTrash()
-    {
-        sortedObjects++;
-    }
-
     private void OnGUI()
     {
+        GUI.DrawTexture(new Rect(Screen.width - 64, 0, 64, 64), textures[6]);
+        GUI.DrawTexture(new Rect(Screen.width - 128, 0, 64, 64), textures[5]);
+        GUI.DrawTexture(new Rect(Screen.width - 192, 0, 64, 64), textures[(int)GameManager.Instance.ruleTarget]);
         if (isAtDayEnd)
         {
             GUI.Box(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 2, Screen.height / 2), "");
             //%dechets tri�
-            GUI.Label(new Rect(Screen.width / 4+10, Screen.height / 4+10, Screen.width / 2, Screen.height / 2), $"% Déchets bien triés : {(int)((sortedObjects / spawnedObjects) * 100)}%");
+            GUI.Label(new Rect(Screen.width / 4+10, Screen.height / 4+10, Screen.width / 2, Screen.height / 2), $"% Déchets bien triés : {(int)((sortedObjects * 100f / spawnedObjects))}%");
             //salaire
-            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 50, Screen.width / 2, Screen.height / 2), $"Salaire: {(int)(sortedObjects / spawnedObjects * salaire)}");
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 50, Screen.width / 2, Screen.height / 2), $"Salaire: {(int)(sortedObjects * 1f / spawnedObjects * salaire)}");
 
             //GUI.Label(new Rect(), $"% dechets bien trie : {(int)((sortedObjects / spawnedObjects) * 100)}%");
             //salaire
@@ -166,7 +160,6 @@ public class GameManager : MonoBehaviour
 
             GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 130, Screen.width / 2, Screen.height / 2), $"T1 : {sortedObjects}");
             GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 150, Screen.width / 2, Screen.height / 2), $"T2 : {spawnedObjects}");
-
         }
     }
 }
