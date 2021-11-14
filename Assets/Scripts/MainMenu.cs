@@ -135,6 +135,8 @@ public class MainMenu : MonoBehaviour
             cam.transform.rotation = target;
             yield return null;
         }
+        BlackMarket.Instance.transform.GetChild(0).gameObject.SetActive(true);
+        BlackMarket.Instance.UpdateDemands();
     }
 
     private IEnumerator CameraRotationToTrashSortingFromRight()

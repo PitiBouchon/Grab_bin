@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int money = 1000;
     private int depense;
+    public int money;
     public int spawnedObjects;
     public int sortedObjects;
     private int salaire = 250;
