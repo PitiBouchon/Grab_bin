@@ -44,21 +44,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartDay());
+        StartDay();
     }
 
-    private IEnumerator StartDay(bool first=true)
+    private void StartDay()
     {
-        if (!first)
-        {
-            yield return new WaitForSeconds(10f);
-        }
-
         foreach (GameObject gm in GameObject.FindGameObjectsWithTag("Trash"))
         {
             Destroy(gm);
         }
-
         isAtDayEnd = false;
         FadeLight(true);
 
@@ -101,7 +95,7 @@ public class GameManager : MonoBehaviour
                     SceneManager.LoadScene("TitleScreen");
                 }
                 Time.timeScale = 1;
-                StartCoroutine(StartDay(true));
+                StartDay();
             }
         }
     }
