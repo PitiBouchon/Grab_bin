@@ -28,19 +28,19 @@ public class TrashScript : MonoBehaviour
         switch (cat_color)
         {
             case CatColor.RED:
-                SetTrashColor(Color.red);
+                SetTrashColor(Color.HSVToRGB(0f, 0.6f, 1f));
                 break;
             case CatColor.BLUE:
-                SetTrashColor(Color.blue);
+                SetTrashColor(Color.HSVToRGB(230f / 360f, 0.6f, 1f));
                 break;
             case CatColor.GREEN:
-                SetTrashColor(Color.green);
+                SetTrashColor(Color.HSVToRGB(125f / 360f, 0.6f, 1f));
                 break;
             case CatColor.PURPLE:
-                SetTrashColor(new Color(0.5f, 0, 0.5f));
+                SetTrashColor(Color.HSVToRGB(290f / 360f, 0.6f, 1f));
                 break;
             case CatColor.YELLOW:
-                SetTrashColor(Color.yellow);
+                SetTrashColor(Color.HSVToRGB(60f / 360f, 0.6f, 1f));
                 break;
         }
     }

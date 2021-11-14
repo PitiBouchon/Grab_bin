@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if(Input.GetKeyUp(KeyCode.Space))
         {
             this.transform.Find("EscapeMenu").gameObject.SetActive(true);
             Time.timeScale = 0;
