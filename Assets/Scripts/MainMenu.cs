@@ -12,36 +12,113 @@ public class MainMenu : MonoBehaviour
     private float xAngle;
     private float zAngle;
     private Quaternion target;
+    private states state;
+
+    private enum states
+    {
+        BlackMarket,
+        Entrance,
+        Facility
+    }
 
     private void Start()
     {
         cam = Camera.main;
         xAngle = cam.transform.rotation.eulerAngles.x;
         zAngle = cam.transform.rotation.eulerAngles.z;
+        state = states.Facility;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            this.transform.Find("EscapeMenu").gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+        if(Input.GetKeyUp(KeyCode.Q) && state == states.Facility)
+        {
+            // if player presses q and is in the facility
+            ToBlackMarket();
+        }
+        if(Input.GetKeyUp(KeyCode.Q) && state == states.Entrance)
+        {
+            // if player presses q and is in the entrance
+            ToTrashSortingFromRight();
+        }
+        if (Input.GetKeyUp(KeyCode.D) && state == states.Facility)
+        {
+            // if player presses d and is in the faciity
+            ToEntrance();
+        }
+        if(Input.GetKeyUp(KeyCode.D) && state == states.BlackMarket)
+        {
+            // if player presses d and is in the black market
+            ToTrashSortingFromLeft();
+        }
     }
 
     public void StartGame()
     {
         StartCoroutine(LoadScene("General"));
     }
-    public void ToTrashSorting()
+    public void ToTrashSortingFromRight()
     {
-        StartCoroutine(CameraRotationToTrashSorting());
+        StartCoroutine(CameraRotationToTrashSortingFromRight());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(true);
-        this.transform.Find("ToTrashSortingButton").gameObject.SetActive(false);
+        this.transform.Find("ToEntranceButton").gameObject.SetActive(true);
+        this.transform.Find("ToSortingFacilityButtonFromLeft").gameObject.SetActive(false);
+        this.transform.Find("ToSortingFacilityButtonFromRight").gameObject.SetActive(false);
+        state = states.Facility;
+    }
+
+    public void ToTrashSortingFromLeft()
+    {
+        StartCoroutine(CameraRotationToTrashSortingFromLeft());
+        this.transform.Find("ToBlackMarketButton").gameObject.SetActive(true);
+        this.transform.Find("ToEntranceButton").gameObject.SetActive(true);
+        this.transform.Find("ToSortingFacilityButtonFromLeft").gameObject.SetActive(false);
+        this.transform.Find("ToSortingFacilityButtonFromRight").gameObject.SetActive(false);
+        state = states.Facility;
     }
 
     public void ToBlackMarket()
     {
         StartCoroutine(CameraRotationToBlackMarket());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(false);
-        this.transform.Find("ToTrashSortingButton").gameObject.SetActive(true);
+        this.transform.Find("ToEntranceButton").gameObject.SetActive(false);
+        this.transform.Find("ToSortingFacilityButtonFromLeft").gameObject.SetActive(true);
+        state = states.BlackMarket;
     }
 
-    private IEnumerator CameraRotationToBlackMarket()
+    public void ToEntrance()
+    {
+        StartCoroutine(CameraRotationToEntrance());
+        this.transform.Find("ToEntranceButton").gameObject.SetActive(false);
+        this.transform.Find("ToBlackMarketButton").gameObject.SetActive(false);
+        this.transform.Find("ToSortingFacilityButtonFromRight").gameObject.SetActive(true);
+        state = states.Entrance;
+    }
+
+    public void Resume()
+    {
+        this.transform.Find("EscapeMenu").gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void ReturnToMainMenu()
+    {
+        StartCoroutine(LoadScene("TitleScreen"));
+        Time.timeScale = 1;
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    private IEnumerator CameraRotationToEntrance()
     {
 
-        for (float i = 0; i <= 180; i += speed)
+        for (float i = 0; i <= 90; i += speed)
         {
             target = Quaternion.Euler(xAngle, i, zAngle);
             cam.transform.rotation = target;
@@ -49,10 +126,32 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private IEnumerator CameraRotationToTrashSorting()
+    private IEnumerator CameraRotationToBlackMarket()
     {
 
-        for (float i = 180; i >= 0; i -= speed)
+        for (float i = 0; i >= -90; i -= speed)
+        {
+            target = Quaternion.Euler(xAngle, i, zAngle);
+            cam.transform.rotation = target;
+            yield return null;
+        }
+    }
+
+    private IEnumerator CameraRotationToTrashSortingFromRight()
+    {
+
+        for (float i = 90; i >= 0; i -= speed)
+        {
+            target = Quaternion.Euler(xAngle, i, zAngle);
+            cam.transform.rotation = target;
+            yield return null;
+        }
+    }
+
+    private IEnumerator CameraRotationToTrashSortingFromLeft()
+    {
+
+        for (float i = -90; i <= 0; i += speed)
         {
             target = Quaternion.Euler(xAngle, i, zAngle);
             cam.transform.rotation = target;

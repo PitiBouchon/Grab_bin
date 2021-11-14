@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Category;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int money;
+    private int money = 1000;
+    private int depense;
     public int spawnedObjects;
     public int sortedObjects;
     private int salaire = 250;
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
         get { return CollectionManager.Instance.collectedTrash.Count; }
     }
 
-    [SerializeField] private float dayLength = 90f;
+    [SerializeField] public float dayLength = 90f;
     private float startDayTime = -1f;
 
     private int day = 0;
@@ -48,17 +50,18 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartDay());
     }
 
-    private IEnumerator StartDay(bool first = true)
-    {
-        StartCoroutine(StartDay());
-    }
-
     private IEnumerator StartDay(bool first=true)
     {
         if (!first)
         {
             yield return new WaitForSeconds(10f);
         }
+
+        foreach (GameObject gm in GameObject.FindGameObjectsWithTag("Trash"))
+        {
+            Destroy(gm);
+        }
+
         isAtDayEnd = false;
         FadeLight(true);
 
@@ -78,6 +81,9 @@ public class GameManager : MonoBehaviour
         FadeLight(false);
         //update money
         money += sortedObjects / spawnedObjects * salaire;
+        depense = Random.Range(230, 270);
+        money -= depense;
+
         //update stress
         //100-90->baisse de 10%
         //90-75->10%
@@ -85,7 +91,22 @@ public class GameManager : MonoBehaviour
         //50-30->30%
         //30-10->50%
         //0-10->100%
-        StartCoroutine(StartDay(false)); ;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        {
+            if (Time.timeScale == 0)
+            {
+                if (money < 0)
+                {
+                    SceneManager.LoadScene("TitleScreen");
+                }
+                Time.timeScale = 1;
+                StartCoroutine(StartDay(true));
+            }
+        }
     }
 
     private void ChangeRule()
@@ -113,6 +134,10 @@ public class GameManager : MonoBehaviour
             light.intensity = ((turnOn?(i):(100 - i))) / 100f;
             yield return new WaitForSeconds(0.01f);
         }
+        if (!turnOn)
+        {
+            Time.timeScale = 0;
+        }
     }
 
 
@@ -127,14 +152,20 @@ public class GameManager : MonoBehaviour
         {
             GUI.Box(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 2, Screen.height / 2), "");
             //%dechets tri�
-            GUI.Label(new Rect(Screen.width / 4+10, Screen.height / 4+10, Screen.width / 2, Screen.height / 2), $"% de d�chets tri�s correctement: {(int)((sortedObjects / spawnedObjects) * 100)}%");
+            GUI.Label(new Rect(Screen.width / 4+10, Screen.height / 4+10, Screen.width / 2, Screen.height / 2), $"% Déchets bien triés : {(int)((sortedObjects / spawnedObjects) * 100)}%");
             //salaire
             GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 50, Screen.width / 2, Screen.height / 2), $"Salaire: {(int)(sortedObjects / spawnedObjects * salaire)}");
 
-            GUI.Label(new Rect(), $"% de d�chets tri�s correctement: {(int)((sortedObjects / spawnedObjects) * 100)}%");
+            //GUI.Label(new Rect(), $"% dechets bien trie : {(int)((sortedObjects / spawnedObjects) * 100)}%");
             //salaire
-            GUI.Label(new Rect(), $"Salaire: {(int)(sortedObjects / spawnedObjects * salaire)}");
+            //GUI.Label(new Rect(), $"Salaire : {(int)(sortedObjects / spawnedObjects * salaire)}");
             //argent kipar
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 80, Screen.width / 2, Screen.height / 2), $"Dépense : {depense}");
+            // ARGENT
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 110, Screen.width / 2, Screen.height / 2), $"Total : {money}");
+
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 130, Screen.width / 2, Screen.height / 2), $"T1 : {sortedObjects}");
+            GUI.Label(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 150, Screen.width / 2, Screen.height / 2), $"T2 : {spawnedObjects}");
 
         }
     }
