@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         get { return CollectionManager.Instance.collectedTrash.Count; }
     }
 
-    [SerializeField] private float dayLength = 90f;
+    [SerializeField] public float dayLength = 90f;
     private float startDayTime = -1f;
 
     private int day = 0;

@@ -8,7 +8,7 @@ public class StressBar : MonoBehaviour
     [SerializeField]
     public float maxStess = 100f;
     [SerializeField]
-    public float curStress = 100f;
+    public float curStress;
     [SerializeField]
     public Image StressBarImage;
     void Start()
