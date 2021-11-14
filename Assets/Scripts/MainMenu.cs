@@ -164,7 +164,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator CameraRotationToTrashSortingFromLeft()
     {
-
+        BlackMarket.Instance.transform.GetChild(0).gameObject.SetActive(false);
         for (float i = -90; i <= 0; i += speed)
         {
             targetAngle = Quaternion.Euler(xAngle, i, zAngle);
