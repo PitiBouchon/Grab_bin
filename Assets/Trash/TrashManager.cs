@@ -54,7 +54,7 @@ public class TrashManager : MonoBehaviour
         while (true)
         {
             SpawnTrash(trashes[Random.Range(0, trashes.Length)]);
-            yield return new WaitForSeconds(Random.Range(1, 2));
+            yield return new WaitForSeconds(Random.Range(1.6f, 3.5f));
         }
     }
 }

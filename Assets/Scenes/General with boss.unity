@@ -1015,6 +1015,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlassBin
       objectReference: {fileID: 0}
+    - target: {fileID: 4902646753250384955, guid: e3937be9e43356a438bfe94c1ce4b847, type: 3}
+      propertyPath: Priority
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157324283400445760, guid: e3937be9e43356a438bfe94c1ce4b847, type: 3}
+      propertyPath: Priority
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5810908112733541603, guid: e3937be9e43356a438bfe94c1ce4b847, type: 3}
       propertyPath: MinDistance
       value: 1.1724815
@@ -1026,6 +1034,10 @@ PrefabInstance:
     - target: {fileID: 6231692007992845919, guid: e3937be9e43356a438bfe94c1ce4b847, type: 3}
       propertyPath: BinCatType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535180754268132934, guid: e3937be9e43356a438bfe94c1ce4b847, type: 3}
+      propertyPath: Priority
+      value: 29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3937be9e43356a438bfe94c1ce4b847, type: 3}
@@ -1465,6 +1477,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1424925776}
     m_Modifications:
+    - target: {fileID: 3588470310347410374, guid: 3be3952f72c094d49b9d4d2535ebf795, type: 3}
+      propertyPath: Priority
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760817669454184859, guid: 3be3952f72c094d49b9d4d2535ebf795, type: 3}
+      propertyPath: Priority
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8339250977842641206, guid: 3be3952f72c094d49b9d4d2535ebf795, type: 3}
       propertyPath: m_Name
       value: metalBinFixed
@@ -1524,6 +1544,10 @@ PrefabInstance:
     - target: {fileID: 8714790976424764300, guid: 3be3952f72c094d49b9d4d2535ebf795, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754826983564081098, guid: 3be3952f72c094d49b9d4d2535ebf795, type: 3}
+      propertyPath: Priority
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3be3952f72c094d49b9d4d2535ebf795, type: 3}
@@ -2344,7 +2368,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1972922747ae4b54691562a534d5e36e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2886,6 +2910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 919195544}
   - component: {fileID: 919195543}
+  - component: {fileID: 919195545}
   m_Layer: 0
   m_Name: BlackMarket
   m_TagString: Untagged
@@ -2909,6 +2934,7 @@ MonoBehaviour:
   maxDuration: 30
   clientSpawnCooldown: 20
   baseReward: 50
+  Alert: {fileID: 919195545}
   demande_prefab: {fileID: 6938366153271336030, guid: 5e4e5ac2899449e46a295d0fe9720b20, type: 3}
 --- !u!4 &919195544
 Transform:
@@ -2925,6 +2951,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &919195545
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919195542}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: db8ef959a6ddfd44c9eddf769deb9f27, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.08
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &940420296
 GameObject:
   m_ObjectHideFlags: 0
@@ -4651,6 +4773,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1424925776}
     m_Modifications:
+    - target: {fileID: -8100521633136628471, guid: d3751bbb03cfd5a48b97a04d4880b9dc, type: 3}
+      propertyPath: Priority
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 160194807702207444, guid: d3751bbb03cfd5a48b97a04d4880b9dc, type: 3}
       propertyPath: m_Name
       value: YellowBin
@@ -4710,6 +4836,14 @@ PrefabInstance:
     - target: {fileID: 680871444670046574, guid: d3751bbb03cfd5a48b97a04d4880b9dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170416954489701161, guid: d3751bbb03cfd5a48b97a04d4880b9dc, type: 3}
+      propertyPath: Priority
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068251432479786215, guid: d3751bbb03cfd5a48b97a04d4880b9dc, type: 3}
+      propertyPath: Priority
+      value: 47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3751bbb03cfd5a48b97a04d4880b9dc, type: 3}

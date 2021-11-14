@@ -15,7 +15,8 @@ public class BlackMarket : MonoBehaviour
     [SerializeField]
     private int baseReward = 50;
     private bool paused=false;
-
+    [SerializeField]
+    private AudioSource Alert;
     private GameObject collectionManager;
     private List<GameObject> collectedTrash;
     private List<(Client, GameObject)> collectedDemand = new List<(Client, GameObject)>();
@@ -74,6 +75,7 @@ public class BlackMarket : MonoBehaviour
         UpdateDemands();
         if (collectedDemand.Count > 8)
             return;
+        Alert.Play();
         Client client = new Client(minDuration, maxDuration, baseReward);
 
         //afficher la nouvelle demande

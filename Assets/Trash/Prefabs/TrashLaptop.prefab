@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cat_type: 2
   cat_color: 1
+  trash_name: 3
   height: 7
 --- !u!114 &7814954636031793248
 MonoBehaviour:
