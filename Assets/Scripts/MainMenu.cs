@@ -8,10 +8,15 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private float speed = 3;
+    [SerializeField]
+    private float translationSpeed = 1.5f;
     private Camera cam;
     private float xAngle;
     private float zAngle;
-    private Quaternion target;
+    private float xPos;
+    private float yPos;
+    private Quaternion targetAngle;
+    private Vector3 targetPosition;
     private states state;
 
     private enum states
@@ -26,6 +31,8 @@ public class MainMenu : MonoBehaviour
         cam = Camera.main;
         xAngle = cam.transform.rotation.eulerAngles.x;
         zAngle = cam.transform.rotation.eulerAngles.z;
+        xPos = cam.transform.position.x;
+        yPos = cam.transform.position.y;
         state = states.Facility;
     }
 
@@ -65,6 +72,7 @@ public class MainMenu : MonoBehaviour
     public void ToTrashSortingFromRight()
     {
         StartCoroutine(CameraRotationToTrashSortingFromRight());
+        StartCoroutine(CameraTranslationForward());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(true);
         this.transform.Find("ToEntranceButton").gameObject.SetActive(true);
         this.transform.Find("ToSortingFacilityButtonFromLeft").gameObject.SetActive(false);
@@ -75,6 +83,7 @@ public class MainMenu : MonoBehaviour
     public void ToTrashSortingFromLeft()
     {
         StartCoroutine(CameraRotationToTrashSortingFromLeft());
+        StartCoroutine(CameraTranslationForward());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(true);
         this.transform.Find("ToEntranceButton").gameObject.SetActive(true);
         this.transform.Find("ToSortingFacilityButtonFromLeft").gameObject.SetActive(false);
@@ -85,6 +94,7 @@ public class MainMenu : MonoBehaviour
     public void ToBlackMarket()
     {
         StartCoroutine(CameraRotationToBlackMarket());
+        StartCoroutine(CameraTranslationBackwards());
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(false);
         this.transform.Find("ToEntranceButton").gameObject.SetActive(false);
         this.transform.Find("ToSortingFacilityButtonFromLeft").gameObject.SetActive(true);
@@ -94,6 +104,7 @@ public class MainMenu : MonoBehaviour
     public void ToEntrance()
     {
         StartCoroutine(CameraRotationToEntrance());
+        StartCoroutine(CameraTranslationBackwards());
         this.transform.Find("ToEntranceButton").gameObject.SetActive(false);
         this.transform.Find("ToBlackMarketButton").gameObject.SetActive(false);
         this.transform.Find("ToSortingFacilityButtonFromRight").gameObject.SetActive(true);
@@ -120,8 +131,9 @@ public class MainMenu : MonoBehaviour
 
         for (float i = 0; i <= 90; i += speed)
         {
-            target = Quaternion.Euler(xAngle, i, zAngle);
-            cam.transform.rotation = target;
+            targetAngle = Quaternion.Euler(xAngle, i, zAngle);
+            targetPosition = new Vector3(xPos, yPos, i / 9);
+            cam.transform.rotation = targetAngle;
             yield return null;
         }
     }
@@ -131,8 +143,8 @@ public class MainMenu : MonoBehaviour
 
         for (float i = 0; i >= -90; i -= speed)
         {
-            target = Quaternion.Euler(xAngle, i, zAngle);
-            cam.transform.rotation = target;
+            targetAngle = Quaternion.Euler(xAngle, i, zAngle);
+            cam.transform.rotation = targetAngle;
             yield return null;
         }
     }
@@ -142,8 +154,8 @@ public class MainMenu : MonoBehaviour
 
         for (float i = 90; i >= 0; i -= speed)
         {
-            target = Quaternion.Euler(xAngle, i, zAngle);
-            cam.transform.rotation = target;
+            targetAngle = Quaternion.Euler(xAngle, i, zAngle);
+            cam.transform.rotation = targetAngle;
             yield return null;
         }
     }
@@ -153,8 +165,8 @@ public class MainMenu : MonoBehaviour
 
         for (float i = -90; i <= 0; i += speed)
         {
-            target = Quaternion.Euler(xAngle, i, zAngle);
-            cam.transform.rotation = target;
+            targetAngle = Quaternion.Euler(xAngle, i, zAngle);
+            cam.transform.rotation = targetAngle;
             yield return null;
         }
     }
@@ -171,6 +183,26 @@ public class MainMenu : MonoBehaviour
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)
         {
+            yield return null;
+        }
+    }
+
+    private IEnumerator CameraTranslationBackwards()
+    {
+        for (float y = 10; y >= 0; y -= translationSpeed)
+        {
+            targetPosition = new Vector3(xPos, yPos, y);
+            cam.transform.position = targetPosition;
+            yield return null;
+        }
+    }
+
+    private IEnumerator CameraTranslationForward()
+    {
+        for (float y = 0; y <= 10; y += translationSpeed)
+        {
+            targetPosition = new Vector3(xPos, yPos, y);
+            cam.transform.position = targetPosition;
             yield return null;
         }
     }
