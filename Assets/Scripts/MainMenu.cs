@@ -136,6 +136,12 @@ public class MainMenu : MonoBehaviour
             cam.transform.rotation = targetAngle;
             yield return null;
         }
+        for (float x = 45; x >= 30; x -= speed/2)
+        {
+            targetAngle = Quaternion.Euler(x, 90, zAngle);
+            cam.transform.rotation = targetAngle;
+            yield return null;
+        }
     }
 
     private IEnumerator CameraRotationToBlackMarket()
@@ -155,6 +161,12 @@ public class MainMenu : MonoBehaviour
         for (float i = 90; i >= 0; i -= speed)
         {
             targetAngle = Quaternion.Euler(xAngle, i, zAngle);
+            cam.transform.rotation = targetAngle;
+            yield return null;
+        }
+        for (float x = 30; x <= 45; x += speed/2)
+        {
+            targetAngle = Quaternion.Euler(x, 0, zAngle);
             cam.transform.rotation = targetAngle;
             yield return null;
         }
