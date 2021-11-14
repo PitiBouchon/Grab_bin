@@ -32,11 +32,7 @@ public class BinManager : MonoBehaviour
         curStress = stressManager.GetComponent<StressBar>().curStress;
 
         audio = GetComponent<AudioSource>();
-    }
-    
-    
-
-    
+    }    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -51,7 +47,6 @@ public class BinManager : MonoBehaviour
                 audio.Play();
                 Destroy(collision.gameObject);
                 Bonus();
-                GameManager.Instance.SortTrash();
 
             }
             else
@@ -82,7 +77,7 @@ public class BinManager : MonoBehaviour
         healthManager.GetComponent<HealthBar>().SetCurHP(curHP);
         curStress += 5;
         stressManager.GetComponent<StressBar>().SetCurStress(curStress);
-
+        GameManager.Instance.SortTrash();
         print("bg gros");
     }
 

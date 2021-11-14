@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BinCatColor: 0
-  BinCatType: 0
+  BinCatType: 1
   audio: {fileID: 7033906525056457478}
   error1: {fileID: 6170416954489701161}
   error2: {fileID: -8100521633136628471}
