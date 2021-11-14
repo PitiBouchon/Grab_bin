@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int money;
+    public int money;
     public int spawnedObjects;
     public int sortedObjects;
     private int salaire = 250;

@@ -47,11 +47,13 @@ public class MainMenu : MonoBehaviour
             cam.transform.rotation = target;
             yield return null;
         }
+        BlackMarket.Instance.transform.GetChild(0).gameObject.SetActive(true);
+        BlackMarket.Instance.UpdateDemands();
     }
 
     private IEnumerator CameraRotationToTrashSorting()
     {
-
+        BlackMarket.Instance.transform.GetChild(0).gameObject.SetActive(false);
         for (float i = 180; i >= 0; i -= speed)
         {
             target = Quaternion.Euler(xAngle, i, zAngle);
