@@ -72,7 +72,7 @@ public class BlackMarket : MonoBehaviour
     public void SpawnClient()
     {
         UpdateDemands();
-        if (collectedDemand.Count > 10)
+        if (collectedDemand.Count > 8)
             return;
         Client client = new Client(minDuration, maxDuration, baseReward);
 

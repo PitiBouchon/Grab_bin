@@ -349,6 +349,7 @@ MonoBehaviour:
   spawnRot: {x: 0, y: 0, z: 0}
   spawnForce: {x: 0, y: 0, z: 0}
   spawnDelay: 0
+  incineratorSFX: {fileID: 0}
   type: 3
 --- !u!65 &113658781
 BoxCollider:
@@ -1163,7 +1164,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 280978753}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.83483297
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2056,9 +2057,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41876e076a4dd7349bb1b9b8d1b9fc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDuration: 120
-  maxDuration: 240
-  clientSpawnCooldown: 2
+  minDuration: 70
+  maxDuration: 110
+  clientSpawnCooldown: 100
   baseReward: 50
   demande_prefab: {fileID: 6938366153271336030, guid: 5e4e5ac2899449e46a295d0fe9720b20, type: 3}
 --- !u!1 &498851653
@@ -3376,6 +3377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  translationSpeed: 1.5
 --- !u!114 &1155357336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3532,6 +3534,15 @@ MonoBehaviour:
   spawnedObjects: 0
   sortedObjects: 0
   dayLength: 90
+  ruleTarget: 0
+  textures:
+  - {fileID: 2800000, guid: 05e31ec58628e7c4eb557ebf50b22506, type: 3}
+  - {fileID: 2800000, guid: c72ddfdb5ac56ca4e8ae1262335f7713, type: 3}
+  - {fileID: 2800000, guid: d58c08f27a4f4cc42be6577fa27612f4, type: 3}
+  - {fileID: 2800000, guid: 2798a5da33ca3d44bb22797702661327, type: 3}
+  - {fileID: 2800000, guid: e88ddefe0bd7712449b89f5b72754529, type: 3}
+  - {fileID: 2800000, guid: 568fbd528af052547963e75296800024, type: 3}
+  - {fileID: 2800000, guid: e62ea7f8502c2274ba465c5465edbf41, type: 3}
 --- !u!1 &1184599310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,7 +3803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.13751979}
+  m_AnchoredPosition: {x: 0, y: 0.00016784668}
   m_SizeDelta: {x: 0, y: 495.51}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1262372207
@@ -5240,6 +5251,7 @@ MonoBehaviour:
   spawnRot: {x: 0, y: 0, z: 0}
   spawnForce: {x: 0, y: 0, z: 0}
   spawnDelay: 0
+  incineratorSFX: {fileID: 0}
   type: 1
 --- !u!65 &8223729115261466998
 BoxCollider:

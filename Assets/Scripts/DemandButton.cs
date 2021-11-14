@@ -8,7 +8,6 @@ public class DemandButton : MonoBehaviour
 
     public void Sell()
     {
-        Debug.Log("SELL");
         BlackMarket.Instance.Sell(client);
         Destroy(this.transform.parent.gameObject);
     }
