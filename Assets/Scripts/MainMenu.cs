@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(LoadScene("General"));
+        StartCoroutine(LoadScene("General with boss"));
     }
     public void ToTrashSortingFromRight()
     {
